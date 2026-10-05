@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a1022" />
+    <title>AIM ARCADE — Tic Tac Toe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Bungee&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="welcome-overlay" id="welcomeOverlay" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+      <form class="welcome-card" id="playerForm">
+        <div class="welcome-icon">✦</div>
+        <p class="eyebrow">PLAYER SETUP</p>
+        <h2 id="welcomeTitle">Enter the <span>arena</span>.</h2>
+        <p class="welcome-copy">Choose your mode and name the challengers before the match begins.</p>
+        <div class="setup-mode" role="group" aria-label="Setup game mode">
+          <button type="button" class="setup-mode-button selected" data-setup-mode="solo">SOLO <small>VS CPU</small></button>
+          <button type="button" class="setup-mode-button" data-setup-mode="local">LOCAL <small>2 PLAYERS</small></button>
+        </div>
+        <label class="name-field"><span>PLAYER X NAME</span><input id="xNameInput" maxlength="14" autocomplete="name" placeholder="Your name" required /></label>
+        <label class="name-field" id="oNameField" hidden><span>PLAYER O NAME</span><input id="oNameInput" maxlength="14" autocomplete="off" placeholder="Second player" /></label>
+        <button class="start-game" type="submit">START MATCH <span>→</span></button>
+      </form>
+    </div>
+    <div class="victory-overlay" id="victoryOverlay" role="dialog" aria-modal="true" aria-labelledby="victoryTitle" hidden>
+      <div class="victory-card">
+        <div class="trophy">★</div>
+        <p class="eyebrow">ROUND COMPLETE</p>
+        <h2 id="victoryTitle">Congratulations!</h2>
+        <p class="victory-message"><strong id="winnerName">PLAYER X</strong> owns the grid.</p>
+        <button class="start-game" id="nextRound" type="button">PLAY NEXT ROUND <span>→</span></button>
+      </div>
+    </div>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="AIM ARCADE home"><span class="brand-mark">A</span><span>AIM ARCADE</span></a>
+        <div class="top-actions">
+          <div class="round-pill"><span class="pulse"></span><span id="roundLabel">ROUND 01</span></div>
+          <button class="edit-players" id="editPlayers" type="button">EDIT PLAYERS</button>
+        </div>
+      </header>
+
+      <section class="game-layout" aria-label="Tic Tac Toe game">
+        <div class="intro">
+          <p class="eyebrow">READY PLAYER ONE</p>
+          <h1>Tic <em>Tac</em> Toe<span>!</span></h1>
+          <p class="lede">Pick a mode, claim your squares, and make a row before your challenger does.</p>
+          <div class="mode-switch" role="group" aria-label="Game mode">
+            <button class="mode-button selected" data-mode="solo">◉ SOLO <small>VS CPU</small></button>
+            <button class="mode-button" data-mode="local">◎ LOCAL <small>2 PLAYERS</small></button>
+          </div>
+          <div class="player-key"><span class="key-dot x-dot"></span> <span id="xKey">PLAYER X</span> <span class="key-divider"></span><span class="key-dot o-dot"></span> <span id="opponentKey">CPU O</span></div>
+        </div>
+
+        <section class="play-zone">
+          <div class="scoreboard" aria-label="Scoreboard">
+            <div class="score-card active-x"><span class="score-name" id="xLabel">PLAYER X</span><strong id="xScore">00</strong></div>
+            <div class="vs">VS</div>
+            <div class="score-card active-o"><span class="score-name" id="oLabel">CPU O</span><strong id="oScore">00</strong></div>
+          </div>
+
+          <div class="status" id="status" aria-live="polite"><span class="status-dot"></span><span>YOUR TURN — PLACE AN X</span></div>
+
+          <div class="board" id="board" role="grid" aria-label="Tic Tac Toe board">
+            <button class="cell" role="gridcell" aria-label="Top left"></button><button class="cell" role="gridcell" aria-label="Top center"></button><button class="cell" role="gridcell" aria-label="Top right"></button>
+            <button class="cell" role="gridcell" aria-label="Middle left"></button><button class="cell" role="gridcell" aria-label="Center"></button><button class="cell" role="gridcell" aria-label="Middle right"></button>
+            <button class="cell" role="gridcell" aria-label="Bottom left"></button><button class="cell" role="gridcell" aria-label="Bottom center"></button><button class="cell" role="gridcell" aria-label="Bottom right"></button>
+          </div>
+
+          <button class="new-round" id="newRound"><span>↻</span> NEW ROUND</button>
+          <button class="reset-link" id="resetScores">RESET MATCH SCORE</button>
+        </section>
+      </section>
+      <footer><span>DESIGNED FOR THE LOVE OF THE GAME</span><span>© 2026 AIM ARCADE</span></footer>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
